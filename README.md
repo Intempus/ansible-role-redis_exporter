@@ -1,5 +1,6 @@
 Ansible Role: redis exporter
 =========
+[![CI](https://github.com/Puller23/ansible-role-redis_exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/Puller23/ansible-role-redis_exporter/actions/workflows/ci.yml)
 
 Deploy prometheus [redis exporter](https://https://github.com/oliver006/redis_exporter) using ansible.
 

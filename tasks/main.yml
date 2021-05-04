@@ -26,5 +26,3 @@
   become: true
   tags:
     - node_exporter_configure
-
-
