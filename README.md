@@ -18,8 +18,6 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | `redis_exporter_version` | 1.20.0 | Redis exporter package version. Also accepts latest as parameter. |
 | `redis_exporter_install_dir` | "" | Allows to use local packages instead of ones distributed on github.|
 | `redis_exporter_web_listen_adress` | "0.0.0.0:9312" | Address on which redis exporter will listen |
-| `redis_exporter_system_user` | "0.0.0.0:9312" | Address on which redis exporter will listen |
-| `redis_exporter_system_group` | "0.0.0.0:9312" | Address on which redis exporter will listen |
 | `redis_exporter_web_telemetry_path` | "metrics" | Path under which to expose metrics |
 | `redis_exporter_redis_ip` | "localhost" | IP Address of the Redis instance |
 | `redis_exporter_redis_port` | 6379 | Port of the Redis instance |
