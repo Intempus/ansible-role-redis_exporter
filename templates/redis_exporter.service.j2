@@ -15,6 +15,9 @@ ExecStart={{ _redis_exporter_install_dir }} \
 {% if redis_exporter_redis_password | length > 0 %}
     --redis.password {{ redis_exporter_redis_password }} \
 {% endif %}
+{% if redis_exporter_extra_arguments | length > 0 %}
+    {{ redis_exporter_extra_arguments  }} \
+{% endif %}
     --web.telemetry-path /{{ redis_exporter_web_telemetry_path }}
 
 SyslogIdentifier=redis_exporter
