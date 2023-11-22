@@ -12,8 +12,6 @@
 
 - name: Get currently installed redis_exporter version
   command: "{{ _redis_exporter_install_dir }} --version"
-  args:
-    warn: false
   changed_when: false
   register: _r_redis_exporter_current_version
   when: _redis_exporter_is_installed.stat.exists
