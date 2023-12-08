@@ -10,3 +10,10 @@
 
 - debug:
     msg: "User: {{ redis_exporter_system_user }}"
+
+- name: Ensure redis_exporter is enabled and started
+  ansible.builtin.service:
+    name: redis_exporter
+    enabled: yes
+    state: started
+  become: true
