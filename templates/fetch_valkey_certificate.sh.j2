@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+VAULT_ADDR="https://{{ env }}-vault.intempus.dk"
+TOKEN_FILE="/root/token/token.txt"
+SECRET_PATH="/v1/apps/base/data/private_settings"
+
+export VAULT_ADDR
+export VAULT_TOKEN=$(cat "$TOKEN_FILE")
+
+# Fetch secret (KV v2 example)
+SECRET_JSON=$(curl --header "X-Vault-Token: ${VAULT_TOKEN}" --request GET "${VAULT_ADDR}${SECRET_PATH}")
+
+# Extract fields (requires jq)
+VALKEY_CA_CONTENT=$(echo "$SECRET_JSON" | jq -r '.data.data.VALKEY_CACHE_PEM')
+
+if [[ -z "$VALKEY_CA_CONTENT" || "$VALKEY_CA_CONTENT" == "null" ]]; then
+  echo "CA certificate not found in Vault response"
+  exit 1
+fi
+
+echo "$VALKEY_CA_CONTENT" > "{{ redis_exporter_ca_path }}"

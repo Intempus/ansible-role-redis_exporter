@@ -22,6 +22,14 @@
     ( not _redis_exporter_is_installed.stat.exists ) or 
     ( redis_exporter_install_dir | length > 0 )
 
+- name: Create a directory for redis exporter certs
+  file:
+    path: /etc/redis-exporter/certs
+    state: directory
+    owner: "{{ redis_exporter_system_user }}"
+    group: "{{ redis_exporter_system_group }}"
+    mode: "0751"
+
 - import_tasks: configure.yml
   become: true
   tags:
