@@ -1,5 +1,6 @@
 Ansible Role: redis exporter
 =========
+
 [![CI](https://github.com/Puller23/ansible-role-redis_exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/Puller23/ansible-role-redis_exporter/actions/workflows/ci.yml)
 
 Deploy prometheus [redis exporter](https://https://github.com/oliver006/redis_exporter) using ansible.
@@ -25,7 +26,8 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | `redis_exporter_redis_password` | "" | Password of the Redis instance |
 | `redis_exporter_system_user` | "redis-exp" | User for systemd service |
 | `redis_exporter_system_group` | "redis-exp" | User for systemd service |
-
+| `redis_exporter_fetch_ca_script` | "/usr/local/bin/fetch_valkey_certificate.sh" | Path to the script for fetching CA certificates |
+| `redis_exporter_ca_path` | "/etc/redis-exporter/certs/valkey-cache.pem" | Path to the CA certificate |
 
 Dependencies
 ------------
@@ -36,6 +38,7 @@ Example Playbook
 ----------------
 
 Use it in a playbook as follows:
+
 ```yaml
 - hosts: all
   roles:
