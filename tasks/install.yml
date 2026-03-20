@@ -54,19 +54,3 @@
       # notify: restart redis_exporter
       # when: not ansible_check_mode
   when: redis_exporter_install_dir | length == 0
-
-- name: Install curl and jq to fetch secrets
-  package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - curl
-    - jq
-
-- name: Template the fetch_valkey_certificate.sh script
-  template:
-    src: fetch_valkey_certificate.sh.j2
-    dest: "{{ redis_exporter_fetch_ca_script }}"
-    mode: "0751"
-    owner: root
-    group: "{{ redis_exporter_system_group }}"

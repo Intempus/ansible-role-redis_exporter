@@ -15,6 +15,22 @@
     redis_exporter_system_group: "{{ _redis_exporter_system_group }}"
   when: redis_exporter_system_group is not defined
 
+- name: Install curl and jq to fetch secrets
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - curl
+    - jq
+
+- name: Template the fetch_valkey_certificate.sh script
+  template:
+    src: fetch_valkey_certificate.sh.j2
+    dest: "{{ redis_exporter_fetch_ca_script }}"
+    mode: "0751"
+    owner: root
+    group: "{{ redis_exporter_system_group }}"
+
 # Install redis_exporter
 - import_tasks: install.yml
   become: true
