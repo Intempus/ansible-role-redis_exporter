@@ -19,7 +19,7 @@
 - block:
     - name: Get checksum
       set_fact:
-        _checksums: "{{ lookup('url', '{{ redis_exporter_base_url }}/v' + redis_exporter_version + '/sha256sums.txt', wantlist=True) | list }}"
+        _checksums: "{{ lookup('url', redis_exporter_base_url + '/v' + redis_exporter_version + '/sha256sums.txt', wantlist=True) | list }}"
       run_once: true
 
     - name: "Get checksum for {{ go_architecture }} architecture"
